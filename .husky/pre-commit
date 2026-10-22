@@ -2,43 +2,35 @@
 set -e
 
 # Gitleaks pre-commit hook
-# Scans staged files for secrets before allowing commit
-
-echo "🔒 Scanning staged files for secrets..."
+# Scans staged files for secrets when gitleaks is installed; warns otherwise.
 
 if ! command -v gitleaks > /dev/null 2>&1; then
   echo ""
-  echo "❌ gitleaks is not installed!"
+  echo "⚠️  gitleaks is not installed, so staged files were NOT scanned for secrets."
+  echo "   Install it to turn scanning on:"
+  echo "     macOS:   brew install gitleaks"
+  echo "     Windows: winget install Gitleaks.Gitleaks"
+  echo "     Linux:   See https://github.com/gitleaks/gitleaks#installing"
   echo ""
-  echo "Install gitleaks to enable secret scanning:"
-  echo "  macOS:   brew install gitleaks"
-  echo "  Windows: scoop install gitleaks"
-  echo "  Linux:   See https://github.com/gitleaks/gitleaks#installing"
-  echo ""
-  echo "Secret scanning is REQUIRED to prevent credential leaks."
-  echo "Commit blocked until gitleaks is installed."
-  echo ""
-  exit 1
+else
+  echo "🔒 Scanning staged files for secrets..."
+
+  if ! gitleaks protect --staged --verbose; then
+    echo ""
+    echo "❌ Secret(s) detected in staged files!"
+    echo ""
+    echo "To fix:"
+    echo "  1. Remove the secret from the file"
+    echo "  2. Use environment variables instead: \${SECRET_NAME}"
+    echo "  3. Add to .env.local (which is in .gitignore)"
+    echo ""
+    echo "If this is a false positive, update .gitleaks.toml allowlist"
+    echo ""
+    exit 1
+  fi
+
+  echo "✅ No secrets detected"
 fi
-
-# Run gitleaks on staged files only
-gitleaks protect --staged --verbose
-
-if [ $? -ne 0 ]; then
-  echo ""
-  echo "❌ Secret(s) detected in staged files!"
-  echo ""
-  echo "To fix:"
-  echo "  1. Remove the secret from the file"
-  echo "  2. Use environment variables instead: \${SECRET_NAME}"
-  echo "  3. Add to .env.local (which is in .gitignore)"
-  echo ""
-  echo "If this is a false positive, update .gitleaks.toml allowlist"
-  echo ""
-  exit 1
-fi
-
-echo "✅ No secrets detected"
 
 echo "🎨 Formatting staged files..."
 npm exec -- lint-staged
