@@ -1,0 +1,14 @@
+{
+  "id": "OFFICE_COUCH",
+  "name": "Couch",
+  "category": "decor",
+  "type": "asset",
+  "file": "OFFICE_COUCH.png",
+  "width": 32,
+  "height": 32,
+  "footprintW": 2,
+  "footprintH": 2,
+  "canPlaceOnWalls": false,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 1
+}

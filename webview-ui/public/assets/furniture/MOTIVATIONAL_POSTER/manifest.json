@@ -1,0 +1,14 @@
+{
+  "id": "MOTIVATIONAL_POSTER",
+  "name": "Motivational Poster",
+  "category": "wall",
+  "type": "asset",
+  "file": "MOTIVATIONAL_POSTER.png",
+  "width": 16,
+  "height": 32,
+  "footprintW": 1,
+  "footprintH": 2,
+  "canPlaceOnWalls": true,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 0
+}

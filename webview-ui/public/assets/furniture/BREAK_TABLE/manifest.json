@@ -1,0 +1,14 @@
+{
+  "id": "BREAK_TABLE",
+  "name": "Break Room Table",
+  "category": "desks",
+  "type": "asset",
+  "file": "BREAK_TABLE.png",
+  "width": 32,
+  "height": 32,
+  "footprintW": 2,
+  "footprintH": 2,
+  "canPlaceOnWalls": false,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 1
+}

@@ -1,0 +1,14 @@
+{
+  "id": "GLASS_WALL",
+  "name": "Glass Wall",
+  "category": "decor",
+  "type": "asset",
+  "file": "GLASS_WALL.png",
+  "width": 16,
+  "height": 32,
+  "footprintW": 1,
+  "footprintH": 2,
+  "canPlaceOnWalls": false,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 1
+}

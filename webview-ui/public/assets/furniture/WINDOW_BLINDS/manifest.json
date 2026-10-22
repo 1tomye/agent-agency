@@ -1,0 +1,14 @@
+{
+  "id": "WINDOW_BLINDS",
+  "name": "Window with Blinds",
+  "category": "wall",
+  "type": "asset",
+  "file": "WINDOW_BLINDS.png",
+  "width": 32,
+  "height": 32,
+  "footprintW": 2,
+  "footprintH": 2,
+  "canPlaceOnWalls": true,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 0
+}

@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+echo "🔍 Type-checking..."
+npm run check-types
+
+# Catch generated-file drift locally instead of only in CI. On drift the file is
+# left regenerated in the working tree -- just commit it and push again.
+echo "🔍 Checking generated-file drift (AsyncAPI bindings)..."
+npm run asyncapi:generate
+if ! git diff --exit-code core/src/messages.ts; then
+  echo "❌ core/src/messages.ts was out of date and has been regenerated above."
+  echo "   Commit the change, then push again."
+  exit 1
+fi

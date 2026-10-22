@@ -1,0 +1,14 @@
+{
+  "id": "WAREHOUSE_SHELF",
+  "name": "Warehouse Shelf",
+  "category": "decor",
+  "type": "asset",
+  "file": "WAREHOUSE_SHELF.png",
+  "width": 32,
+  "height": 48,
+  "footprintW": 2,
+  "footprintH": 3,
+  "canPlaceOnWalls": false,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 2
+}
