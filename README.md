@@ -28,60 +28,52 @@ The office (28x18 tiles): reception, the bullpen, a break room, a party room, th
 corner office, the conference room, and a warehouse with stock on one side and a half-court on
 the other.
 
-## Install
+## Quick start
 
-Build the extension from source (below), then:
+You need Claude Code, Node.js 22 and Git ([full requirements](docs/running.md#what-you-need)).
 
-```powershell
-code --install-extension agent-agency.vsix
-```
-
-Open the **Agent Agency** tab in VS Code's bottom panel and click **+ Agent** to start Claude Code
-at a desk. Sessions you start yourself in a terminal are picked up too. On first run the app asks
-before adding hook entries to `~/.claude/settings.json` (it backs the file up first); if you
-decline, it falls back to reading session transcripts.
-
-Browser version:
-
-```powershell
-node dist/cli.js --port 3200
-```
-
-Open the URL it prints (it includes an access token; without it the page is watch-only).
-
-## Build from source
-
-Requires Node 22.
-
-```powershell
+```sh
+git clone https://github.com/1tomye/agent-agency.git
+cd agent-agency
 npm ci
-npm run vsix        # writes agent-agency.vsix
+npm run vsix
 ```
+
+**VS Code:** `code --install-extension agent-agency.vsix`, reload the window, open the
+**Agent Agency** tab in the bottom panel and click **+ Agent**.
+
+**Browser:** from the project folder you want to watch, run
+`node path/to/agent-agency/dist/cli.js --port 3200` and open the URL it prints.
+
+**[How to run it: the full guide](docs/running.md)** covers both modes, the first-run hooks
+prompt, options, updating, uninstalling and troubleshooting.
+
+## Scripts
 
 `npm run vsix` runs the full build (protocol codegen, type-check, lint, bundling) and packages it
-with `vsce`. Other scripts:
+with `vsce` as `agent-agency.vsix`. Other scripts:
 
-| Script | What it does |
-| --- | --- |
-| `npm run check-types` | TypeScript across all packages |
-| `npm run lint` / `npm run format:check` | ESLint and Prettier |
-| `npm run test:webview` | Office, boss and break-time unit tests |
-| `npm run test:server` | Server tests (see the note below) |
-| `npm run notices` | Regenerates `THIRD_PARTY_NOTICES.md` from the installed dependencies |
+| Script                                  | What it does                                                         |
+| --------------------------------------- | -------------------------------------------------------------------- |
+| `npm run check-types`                   | TypeScript across all packages                                       |
+| `npm run lint` / `npm run format:check` | ESLint and Prettier                                                  |
+| `npm run test:webview`                  | Office, boss and break-time unit tests                               |
+| `npm run test:server`                   | Server tests (see the note below)                                    |
+| `npm run notices`                       | Regenerates `THIRD_PARTY_NOTICES.md` from the installed dependencies |
 
 > On Windows, run `test:server` only in CI or a throwaway user profile: some server tests write to
 > the real `~/.pixel-agents/config.json`.
 
 ## Repository layout
 
-| Path | What's there |
-| --- | --- |
-| `webview-ui/` | React + canvas office (rendering, characters, the boss, break time) |
-| `server/` | Agent runtime, transcript and hook processing, HTTP/WebSocket server, CLI |
-| `adapters/vscode/` | VS Code extension surface |
-| `core/` | Shared protocol (AsyncAPI) and types |
-| `theme/` | Pure-Python generators for all the art and the office layout |
-| `scripts/` | Codegen and maintenance scripts |
+| Path               | What's there                                                              |
+| ------------------ | ------------------------------------------------------------------------- |
+| `webview-ui/`      | React + canvas office (rendering, characters, the boss, break time)       |
+| `server/`          | Agent runtime, transcript and hook processing, HTTP/WebSocket server, CLI |
+| `adapters/vscode/` | VS Code extension surface                                                 |
+| `core/`            | Shared protocol (AsyncAPI) and types                                      |
+| `theme/`           | Pure-Python generators for all the art and the office layout              |
+| `scripts/`         | Codegen and maintenance scripts                                           |
 
 Office-life code: `webview-ui/src/office/boss.ts` and `webview-ui/src/office/breakTime.ts`.
 `CLAUDE.md` describes the inherited architecture in depth.
