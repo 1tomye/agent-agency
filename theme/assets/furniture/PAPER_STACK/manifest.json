@@ -1,0 +1,14 @@
+{
+  "id": "PAPER_STACK",
+  "name": "Paper Stack",
+  "category": "misc",
+  "type": "asset",
+  "file": "PAPER_STACK.png",
+  "width": 16,
+  "height": 16,
+  "footprintW": 1,
+  "footprintH": 1,
+  "canPlaceOnWalls": false,
+  "canPlaceOnSurfaces": true,
+  "backgroundTiles": 0
+}

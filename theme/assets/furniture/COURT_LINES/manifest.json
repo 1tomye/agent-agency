@@ -1,0 +1,14 @@
+{
+  "id": "COURT_LINES",
+  "name": "Court Lines",
+  "category": "decor",
+  "type": "asset",
+  "file": "COURT_LINES.png",
+  "width": 96,
+  "height": 48,
+  "footprintW": 6,
+  "footprintH": 3,
+  "canPlaceOnWalls": false,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 3
+}

@@ -1,0 +1,14 @@
+{
+  "id": "PAPER_BOXES",
+  "name": "Paper Boxes",
+  "category": "storage",
+  "type": "asset",
+  "file": "PAPER_BOXES.png",
+  "width": 16,
+  "height": 32,
+  "footprintW": 1,
+  "footprintH": 2,
+  "canPlaceOnWalls": false,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 1
+}

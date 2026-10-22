@@ -1,0 +1,14 @@
+{
+  "id": "BASKETBALL_HOOP",
+  "name": "Basketball Hoop",
+  "category": "decor",
+  "type": "asset",
+  "file": "BASKETBALL_HOOP.png",
+  "width": 16,
+  "height": 48,
+  "footprintW": 1,
+  "footprintH": 3,
+  "canPlaceOnWalls": false,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 2
+}

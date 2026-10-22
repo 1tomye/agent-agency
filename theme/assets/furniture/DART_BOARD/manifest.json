@@ -1,0 +1,14 @@
+{
+  "id": "DART_BOARD",
+  "name": "Dart Board",
+  "category": "wall",
+  "type": "asset",
+  "file": "DART_BOARD.png",
+  "width": 16,
+  "height": 32,
+  "footprintW": 1,
+  "footprintH": 2,
+  "canPlaceOnWalls": true,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 0
+}

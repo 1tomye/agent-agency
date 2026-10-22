@@ -1,0 +1,14 @@
+{
+  "id": "CONFERENCE_TABLE",
+  "name": "Conference Table",
+  "category": "desks",
+  "type": "asset",
+  "file": "CONFERENCE_TABLE.png",
+  "width": 64,
+  "height": 32,
+  "footprintW": 4,
+  "footprintH": 2,
+  "canPlaceOnWalls": false,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 1
+}

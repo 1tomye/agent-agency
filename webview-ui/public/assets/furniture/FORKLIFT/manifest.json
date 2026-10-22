@@ -1,0 +1,14 @@
+{
+  "id": "FORKLIFT",
+  "name": "Forklift",
+  "category": "decor",
+  "type": "asset",
+  "file": "FORKLIFT.png",
+  "width": 32,
+  "height": 32,
+  "footprintW": 2,
+  "footprintH": 2,
+  "canPlaceOnWalls": false,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 1
+}

@@ -1,0 +1,14 @@
+{
+  "id": "EMPLOYEE_PLAQUE",
+  "name": "Employee of the Month",
+  "category": "wall",
+  "type": "asset",
+  "file": "EMPLOYEE_PLAQUE.png",
+  "width": 16,
+  "height": 32,
+  "footprintW": 1,
+  "footprintH": 2,
+  "canPlaceOnWalls": true,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 0
+}

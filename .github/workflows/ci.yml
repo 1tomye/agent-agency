@@ -1,0 +1,27 @@
+# CI for Agent Agency: types, lint, formatting, unit tests and a full build.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check-types
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run test:webview
+      - run: npm run test:server
+      - run: npm run package

@@ -1,0 +1,179 @@
+{
+  "name": "agent-agency",
+  "displayName": "Agent Agency",
+  "description": "A pixel-art paper-company office where your Claude Code agents come to work",
+  "version": "0.6.0",
+  "publisher": "tomye",
+  "author": "tomye",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1tomye/agent-agency"
+  },
+  "homepage": "https://github.com/1tomye/agent-agency#readme",
+  "bugs": {
+    "url": "https://github.com/1tomye/agent-agency/issues"
+  },
+  "workspaces": [
+    "server",
+    "webview-ui"
+  ],
+  "icon": "icon.png",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20",
+    "vscode": "^1.105.0"
+  },
+  "extensionKind": [
+    "workspace"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "bin": {
+    "agent-agency": "./dist/cli.js"
+  },
+  "files": [
+    "CHANGELOG.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "dist/cli.js",
+    "dist/extension.js",
+    "dist/hooks/claude-hook.js",
+    "dist/uninstall.js",
+    "dist/assets/",
+    "dist/webview/",
+    "icon.png"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "agent-agency.showPanel",
+        "title": "Agent Agency: Show Panel"
+      },
+      {
+        "command": "agent-agency.exportDefaultLayout",
+        "title": "Agent Agency: Export Layout as Default"
+      }
+    ],
+    "viewsContainers": {
+      "panel": [
+        {
+          "id": "agent-agency-panel",
+          "title": "Agent Agency",
+          "icon": "$(window)"
+        }
+      ]
+    },
+    "views": {
+      "agent-agency-panel": [
+        {
+          "type": "webview",
+          "id": "agent-agency.panelView",
+          "name": "Agent Agency"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Agent Agency",
+      "properties": {
+        "agent-agency.autoShowPanel": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically open and focus the Agent Agency panel when VS Code starts."
+        },
+        "agent-agency.autoSpawnAgent": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically spawn a Claude Code agent when VS Code starts, if no agents are currently running."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "vscode:uninstall": "node ./dist/uninstall.js",
+    "prepack": "npm run package",
+    "build:extension": "node esbuild.js --production",
+    "build:webview": "cd webview-ui && npm run build",
+    "compile": "npm run asyncapi:generate && npm run check-types && npm run lint && node esbuild.js && npm run build:webview",
+    "build": "npm run compile",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "vsix": "npx --yes @vscode/vsce package --allow-star-activation --out agent-agency.vsix",
+    "package": "npm run asyncapi:generate && npm run check-types && npm run lint && node esbuild.js --production && npm run build:webview",
+    "asyncapi:generate": "tsx scripts/generate-messages.ts",
+    "asyncapi:validate": "node scripts/validate-asyncapi.mjs",
+    "check-types": "tsc --noEmit && tsc --noEmit -p server/tsconfig.test.json",
+    "prepare": "husky",
+    "lint": "eslint adapters/vscode server core && cd webview-ui && eslint .",
+    "lint:fix": "eslint adapters/vscode server core --fix && cd webview-ui && eslint . --fix",
+    "import-tileset": "tsx scripts/import-tileset-cli.ts",
+    "format": "prettier --write \"adapters/vscode/**/*.ts\" \"server/**/*.ts\" \"core/src/**/*.ts\" \"webview-ui/src/**/*.{ts,tsx,css}\" \"*.{js,mjs}\" \"webview-ui/*.{js,ts}\"",
+    "format:check": "prettier --check \"adapters/vscode/**/*.ts\" \"server/**/*.ts\" \"core/src/**/*.ts\" \"webview-ui/src/**/*.{ts,tsx,css}\" \"*.{js,mjs}\" \"webview-ui/*.{js,ts}\"",
+    "test:webview": "cd webview-ui && npm test",
+    "test:server": "cd server && npm test",
+    "test": "npm run test:webview && npm run test:server",
+    "knip": "knip",
+    "notices": "node scripts/gen-third-party-notices.mjs"
+  },
+  "devDependencies": {
+    "@asyncapi/modelina": "^5.10.1",
+    "@asyncapi/parser": "^3.6.0",
+    "@playwright/test": "^1.58.2",
+    "@types/node": "26.x",
+    "@types/pngjs": "^6.0.5",
+    "@types/vscode": "^1.105.0",
+    "@types/ws": "^8.18.1",
+    "@vscode/test-electron": "^3.1.0",
+    "allure-commandline": "^2.38.1",
+    "allure-playwright": "^3.7.1",
+    "esbuild": "^0.28.0",
+    "eslint": "^10.0.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
+    "husky": "^9.1.7",
+    "knip": "^6.3.0",
+    "lint-staged": "^16.3.2",
+    "npm-run-all": "^4.1.5",
+    "pngjs": "^7.0.0",
+    "prettier": "^3.8.1",
+    "semver": "^7.8.5",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0"
+  },
+  "lint-staged": {
+    "adapters/vscode/**/*.ts": "eslint --fix",
+    "server/**/*.ts": "eslint --fix",
+    "core/src/**/*.ts": "eslint --fix",
+    "webview-ui/src/**/*.{ts,tsx}": "eslint --fix",
+    "scripts/**/*.{js,mjs}": "prettier --write",
+    "*.{ts,tsx,js,mjs,css,json,md}": "prettier --write",
+    "webview-ui/**/*.{ts,tsx,js,css,json}": "prettier --write"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@fastify/static": "^10.1.2",
+    "@fastify/websocket": "^11.2.0",
+    "fastify": "^5.8.5"
+  },
+  "overrides": {
+    "jsonpath-plus": "^10.4.0",
+    "brace-expansion": "^5.0.9",
+    "minimatch": "^10.1.1",
+    "json-schema-migrate": {
+      "ajv": "^6.15.0"
+    },
+    "webapi-parser": {
+      "ajv": "^6.15.0"
+    }
+  },
+  "optionalDependencies": {
+    "@lydell/node-pty": "^1.2.0-beta.12"
+  }
+}

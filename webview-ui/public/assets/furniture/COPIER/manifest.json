@@ -1,0 +1,14 @@
+{
+  "id": "COPIER",
+  "name": "Copier",
+  "category": "decor",
+  "type": "asset",
+  "file": "COPIER.png",
+  "width": 32,
+  "height": 32,
+  "footprintW": 2,
+  "footprintH": 2,
+  "canPlaceOnWalls": false,
+  "canPlaceOnSurfaces": false,
+  "backgroundTiles": 1
+}
